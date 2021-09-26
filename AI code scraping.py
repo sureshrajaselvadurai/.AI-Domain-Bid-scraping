@@ -2,25 +2,28 @@ import os
 from bs4 import BeautifulSoup
 import time
 from selenium import webdriver
+import pandas as pd
 
-chromedriver = (r"C:\webdriver\chromedriver.exe")
+chrome_driver_path = 'path'
+UserUsername = 'UserUsername'
+UserPassword = 'UserPassword'
+domain_index_start = domain_index_start 
+domain_index_end = domain_index_end
+chromedriver = (chrome_driver_path)
+
 os.environ["webdriver.chrome.driver"] = chromedriver
 driver = webdriver.Chrome(chromedriver)
 driver.get('http://auction.whois.ai/users/login/home')
 emailElem = driver.find_element_by_id('UserUsername')
-emailElem.send_keys('namekart')
+emailElem.send_keys(UserUsername)
 passwordElem = driver.find_element_by_id('UserPassword')
-passwordElem.send_keys('14dc15dc')
+passwordElem.send_keys('UserPassword')
 apasswordElem.submit()
-import os
-from bs4 import BeautifulSoup
-import time
-from selenium import webdriver
 
-import pandas as pd
+
 output = pd.DataFrame(columns = ['Amount','bidder','Date','Domain'])
 
-for i in range(20145,26722):
+for i in range(domain_index_start,domain_index_end):
     successful = 0
     while successful == 0:
         try:
